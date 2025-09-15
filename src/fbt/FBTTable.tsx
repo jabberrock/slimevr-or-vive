@@ -1,11 +1,13 @@
-import React from "react";
-import type * as FBT from "./FBT"
+import React, { useState } from "react";
+import * as FBT from "./FBT"
+
+type FBTTableChoice = {
+    system: FBT.System
+    config: string
+}
 
 type FBTTableProps = {
-    choices: {
-        system: FBT.System
-        config: string
-    }[]
+    initialChoices: FBTTableChoice[]
 };
 
 function sum(prices: number[]) {
@@ -16,7 +18,9 @@ function toDollars(priceCents: number) {
     return `$${Math.round(priceCents / 100).toFixed()}`;
 }
 
-function FBTTable({ choices }: FBTTableProps): React.ReactNode {
+function FBTTable(props: FBTTableProps): React.ReactNode {
+    const [ choices, setState ] = useState(props.initialChoices);
+
     return (
         <table>
             <thead>
@@ -31,7 +35,13 @@ function FBTTable({ choices }: FBTTableProps): React.ReactNode {
                 <tr>
                     <td>Configuration</td>
                     {choices.map(({ system, config }) => (
-                        <td key={system.key}>{system.configs[config]}</td>
+                        <td key={system.key}>
+                            <select>
+                                {Object.keys(system.configs).map(c => (
+                                    <option key={c} value={c} selected={c === config}>{system.configs[c]}</option>
+                                ))}
+                            </select>
+                        </td>
                     ))}
                 </tr>
                 <tr>

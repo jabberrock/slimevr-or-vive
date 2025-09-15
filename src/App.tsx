@@ -17,7 +17,7 @@ function App() {
 
     return (
         <>
-            <FBTTable choices={choices} />
+            <FBTTable initialChoices={choices} />
         </>
     )
 }
