@@ -40,3 +40,22 @@
 .read-the-docs {
   color: #888;
 }
+
+table {
+  text-align: left;
+  border-collapse: collapse;
+}
+
+td, th {
+  border: 1px solid white;
+  padding: 5px;
+  vertical-align: top;
+}
+
+.price {
+  font-size: 300%;
+}
+
+.warning {
+  color: red;
+}
