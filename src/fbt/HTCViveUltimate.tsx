@@ -30,12 +30,10 @@ export const HTCViveUltimate: FBT.System = {
         return c;
     },
     "availability": () => (
-        <ul>
-            <li>
-                <div><a href="https://vive.com/" target="_blank">vive.com</a></div>
-                <div>Available immediately</div>
-            </li>
-        </ul>
+        <>
+            <div><a href="https://vive.com/" target="_blank">vive.com</a></div>
+            <div>Available immediately</div>
+        </>
     ),
     "tracking": config => {
         switch (config) {

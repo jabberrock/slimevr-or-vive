@@ -58,7 +58,7 @@ export const SlimeVR: FBT.System = {
             <li>
                 <div>Official SlimeVR Trackers - <a href="https://slimevr.dev/" target="_blank">slimevr.dev</a></div>
                 <div>May take up to 3 months</div>
-            </li>,
+            </li>
             <li>
                 <div>3rd-Party Slime Trackers - <a href="https://discord.com/channels/817184208525983775/1058335815614341240" target="_blank">#marketplace-forum</a></div>
                 <div>SlimeVR-managed marketplace for verified sellers. Delivery may be much faster. Prices vary.</div>
