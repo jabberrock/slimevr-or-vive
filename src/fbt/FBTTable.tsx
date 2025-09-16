@@ -27,7 +27,7 @@ function FBTTable(props: FBTTableProps): React.ReactNode {
                 <tr>
                     <th></th>
                     {choices.map(({ system }) => (
-                        <th key={system.key}>{system.name}</th>
+                        <th key={system.key} className="system">{system.name}</th>
                     ))}
                 </tr>
             </thead>
@@ -76,7 +76,7 @@ function FBTTable(props: FBTTableProps): React.ReactNode {
                                         <td>Total:</td>
                                         <td>{toDollars(sum(itemList.required.map(i => i.count * i.each_price_cents)))}</td>
                                     </tr>
-                                    {!!itemList.optional && (
+                                    {itemList.optional.length > 0 && (
                                         <>
                                             <tr>
                                                 <td colSpan={3}>Recommended</td>
@@ -106,6 +106,14 @@ function FBTTable(props: FBTTableProps): React.ReactNode {
                     {choices.map(({ system, config }) => (
                         <td key={system.key}>
                             {system.availability(config)}
+                        </td>
+                    ))}
+                </tr>
+                <tr>
+                    <td>Tracking</td>
+                    {choices.map(({ system, config }) => (
+                        <td key={system.key}>
+                            {system.tracking(config)}
                         </td>
                     ))}
                 </tr>
