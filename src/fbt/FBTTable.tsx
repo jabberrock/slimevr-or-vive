@@ -19,7 +19,7 @@ function toDollars(priceCents: number) {
 }
 
 function FBTTable(props: FBTTableProps): React.ReactNode {
-    const [ choices, setState ] = useState(props.initialChoices);
+    const [ choices ] = useState(props.initialChoices);
 
     return (
         <table>
