@@ -36,9 +36,9 @@ function FBTTable(props: FBTTableProps): React.ReactNode {
                     <td>Configuration</td>
                     {choices.map(({ system, config }) => (
                         <td key={system.key}>
-                            <select>
+                            <select defaultValue={config}>
                                 {Object.keys(system.configs).map(c => (
-                                    <option key={c} value={c} selected={c === config}>{system.configs[c]}</option>
+                                    <option key={c} value={c}>{system.configs[c]}</option>
                                 ))}
                             </select>
                         </td>
@@ -61,41 +61,43 @@ function FBTTable(props: FBTTableProps): React.ReactNode {
                         return (
                             <td key={system.key}>
                                 <table>
-                                    <tr>
-                                        <td colSpan={3}>Required</td>
-                                    </tr>
-                                    {itemList.required.map((item, i) => (
-                                        <tr key={i}>
-                                            <td><a href={item.link.toString()} target="_blank">{item.name}</a></td>
-                                            <td>{item.count}x</td>
-                                            <td>{toDollars(item.each_price_cents)}</td>
+                                    <tbody>
+                                        <tr>
+                                            <td colSpan={3}>Required</td>
                                         </tr>
-                                    ))}
-                                    <tr>
-                                        <td></td>
-                                        <td>Total:</td>
-                                        <td>{toDollars(sum(itemList.required.map(i => i.count * i.each_price_cents)))}</td>
-                                    </tr>
-                                    {itemList.optional.length > 0 && (
-                                        <>
-                                            <tr>
-                                                <td colSpan={3}>Recommended</td>
+                                        {itemList.required.map((item, i) => (
+                                            <tr key={i}>
+                                                <td><a href={item.link.toString()} target="_blank">{item.name}</a></td>
+                                                <td>{item.count}x</td>
+                                                <td>{toDollars(item.each_price_cents)}</td>
                                             </tr>
-                                            {itemList.optional.map((item, i) => (
-                                                <tr key={i}>
-                                                    <td><a href={item.link.toString()} target="_blank">{item.name}</a></td>
-                                                    <td>{item.count}x</td>
-                                                    <td>{toDollars(item.each_price_cents)}</td>
+                                        ))}
+                                        <tr>
+                                            <td></td>
+                                            <td>Total:</td>
+                                            <td>{toDollars(sum(itemList.required.map(i => i.count * i.each_price_cents)))}</td>
+                                        </tr>
+                                        {itemList.optional.length > 0 && (
+                                            <>
+                                                <tr>
+                                                    <td colSpan={3}>Recommended</td>
                                                 </tr>
-                                            ))}
-                                            <tr>
-                                                <td></td>
-                                                <td>Total:</td>
-                                                <td>{toDollars(sum(itemList.required.map(i => i.count * i.each_price_cents)) +
-                                                    sum(itemList.optional.map(i => i.count * i.each_price_cents)))}</td>
-                                            </tr>
-                                        </>
-                                    )}
+                                                {itemList.optional.map((item, i) => (
+                                                    <tr key={i}>
+                                                        <td><a href={item.link.toString()} target="_blank">{item.name}</a></td>
+                                                        <td>{item.count}x</td>
+                                                        <td>{toDollars(item.each_price_cents)}</td>
+                                                    </tr>
+                                                ))}
+                                                <tr>
+                                                    <td></td>
+                                                    <td>Total:</td>
+                                                    <td>{toDollars(sum(itemList.required.map(i => i.count * i.each_price_cents)) +
+                                                        sum(itemList.optional.map(i => i.count * i.each_price_cents)))}</td>
+                                                </tr>
+                                            </>
+                                        )}
+                                    </tbody>
                                 </table>
                             </td>
                         );
@@ -138,6 +140,14 @@ function FBTTable(props: FBTTableProps): React.ReactNode {
                     {choices.map(({ system, config }) => (
                         <td key={system.key}>
                             {system.volume(config)}
+                        </td>
+                    ))}
+                </tr>
+                <tr>
+                    <td>Examples</td>
+                    {choices.map(({ system, config }) => (
+                        <td key={system.key}>
+                            {system.examples(config)}
                         </td>
                     ))}
                 </tr>

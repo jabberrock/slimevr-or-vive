@@ -1,4 +1,5 @@
 import type * as FBT from "./FBT";
+import { OverlayVideoPlayer } from "./OverlayVideoPlayer";
 
 export const SlimeVR: FBT.System = {
     "key": "slimevr",
@@ -79,4 +80,53 @@ export const SlimeVR: FBT.System = {
     "battery_life": () => "Up to 12 hours",
     "weight": () => "12 g / 0.4 oz per tracker",
     "volume": () => "14 cm³ (62 x 32 x 7 mm)",
+    "examples": () => {
+        const videos = [
+            {
+                name: "Standing",
+                suffix: "1_sitting",
+            },
+            {
+                name: "Light dancing",
+                suffix: "2_light_dancing",
+            },
+            {
+                name: "Dyanmic movement",
+                suffix: "3_dynamic_movement",
+            },
+            {
+                name: "Sitting",
+                suffix: "4_sitting",
+            },
+            {
+                name: "Lying down",
+                suffix: "5_lying_down",
+            },
+            {
+                name: "Sitting on floor",
+                suffix: "6_sitting_on_floor",
+            },
+            {
+                name: "Light exercise",
+                suffix: "7_light_exercise",
+            }
+        ];
+
+        return (
+            <>
+                {videos.map(v => (
+                    <div>
+                        <div>{v.name}</div>
+                        <OverlayVideoPlayer
+                            key={v.suffix}
+                            base_url={`videos/slimevr_1_2/irl/irl_${v.suffix}.mp4`}
+                            overlay_url={`videos/slimevr_1_2/vrc/vrc_${v.suffix}.mp4`}
+                            initial_opacity={0.8}
+                            mask="#00FF00"
+                        />
+                    </div>
+                ))}
+            </>
+        );
+    },
 };
