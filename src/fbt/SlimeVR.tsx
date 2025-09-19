@@ -84,7 +84,7 @@ export const SlimeVR: FBT.System = {
         const videos = [
             {
                 name: "Standing",
-                suffix: "1_sitting",
+                suffix: "1_standing",
             },
             {
                 name: "Light dancing",
