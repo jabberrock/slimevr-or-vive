@@ -11,11 +11,11 @@ function App() {
             config: "6_trackers"
         },
         {
-            system: HTCViveUltimate,
+            system: HTCVive30,
             config: "3_trackers"
         },
         {
-            system: HTCVive30,
+            system: HTCViveUltimate,
             config: "3_trackers"
         },
     ];
